@@ -18,5 +18,5 @@ resultSXP=$( awk "BEGIN { print int (100*$priceSXP)}" )
 
 resultTRYB=$( awk "BEGIN { print int (100*$priceTRYB)}" )
 
-echo "$resultDRGN $resultLEO $resultSXP $resultTRYB" | gforth
+echo "$resultDRGN $resultLEO $resultSXP $resultTRYB" | gforth 
 
