@@ -10,9 +10,13 @@ priceSXP=$(curl -X 'GET' 'https://api.coingecko.com/api/v3/simple/price?ids=swip
 
 priceTRYB=$(curl -X 'GET' 'https://api.coingecko.com/api/v3/simple/price?ids=bilira&vs_currencies=usd&include_24hr_change=true' -H 'accept: application/json' | sed -r 's/^[^:]*:(.*)$/\1/' | awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/'$KEY'\042/){print $(i+1)}}}' | tail -n +2)
 
-result=$( awk "BEGIN { print int (100*$price)}" )
+resultDRGN=$( awk "BEGIN { print int (100*$priceDRGN)}" )
 
-touch amplprice.txt
+resultLEO=$( awk "BEGIN { print int (100*$priceLEO)}" )
 
-echo "$result" >> amplprice.txt
+resultSXP=$( awk "BEGIN { print int (100*$priceSXP)}" )
+
+resultTRYB=$( awk "BEGIN { print int (100*$priceTRYB)}" )
+
+echo "$resultDRGN $resultLEO $resultSXP $resultTRYB" | gforth
 
